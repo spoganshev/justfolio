@@ -9,7 +9,6 @@ import com.example.folio.client.util.Dimension;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
