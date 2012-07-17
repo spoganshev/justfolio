@@ -38,7 +38,7 @@ public class MainMenuPanel extends DockLayoutPanel {
 //		arrowsPanel.setWidgetLeftWidth(nextItemButton, 100, Unit.PX, 50, Unit.PX);
 //		
 //		addWest(arrowsPanel, 150);
-		
+		 
 		LayoutPanel linksPanel = new LayoutPanel();
 		linksPanel.setHeight("50px");
 		CustomAnchor anchorAllProjects = new CustomAnchor("Project");
