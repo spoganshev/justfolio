@@ -25,7 +25,7 @@ public class ProjectPage extends Page {
 	
 	private LayoutPanel container;
 	
-	private ProjectItem projectItem;
+	private ProjectPageItem projectItem;
 	
 	private int horIndex;
 	private int verIndex;
@@ -82,7 +82,7 @@ public class ProjectPage extends Page {
 		final int width = Window.getClientWidth();
 		final int height = Window.getClientHeight();
 		
-		final ProjectItem nextItem = TestData.getRandomItem();
+		final ProjectPageItem nextItem = TestData.getRandomItem();
 		final AbsolutePanel nextPanel = nextItem.getPanel();
 		nextItem.scale(new Dimension(width, height));
 		container.add(nextPanel);

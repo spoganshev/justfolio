@@ -18,10 +18,10 @@ public class ItemPanel extends AbsolutePanel implements HasMouseMoveHandlers, Ha
 	
 	private static Logger LOGGER = Logger.getLogger(ItemPanel.class.getName());
 	
-	private ProjectItem projectItem;
+	private ProjectPageItem projectItem;
 	private Image image;
 	
-	public ItemPanel(ProjectItem projectItem) {
+	public ItemPanel(ProjectPageItem projectItem) {
 		this.projectItem = projectItem;
 		
 		this.addMouseMoveHandler(new MouseMoveHandler() {			
