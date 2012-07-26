@@ -4,7 +4,7 @@ import com.example.folio.client.util.Dimension;
 import com.example.folio.client.util.Utils;
 import com.google.gwt.user.client.ui.Image;
 
-public class ProjectItem {
+public class ProjectPageItem {
 
 	private ProjectPage page;
 	
@@ -14,7 +14,7 @@ public class ProjectItem {
 	private Image image;	
 	private ItemPanel panel;
 
-	public ProjectItem(String imgUrl, String itemName) {
+	public ProjectPageItem(String imgUrl, String itemName) {
 		this.imgUrl = imgUrl;
 		this.itemName = itemName;
 	}

@@ -10,7 +10,7 @@ import com.example.folio.client.cover.grid.CoverBlock;
 import com.example.folio.client.cover.grid.CoverBlock.ImageInfo;
 import com.example.folio.client.cover.grid.CoverGrid;
 import com.example.folio.client.cover.grid.Transformator;
-import com.example.folio.client.project.ProjectItem;
+import com.example.folio.client.project.ProjectPageItem;
 import com.example.folio.client.project.ProjectPage;
 
 public class TestData {
@@ -395,16 +395,16 @@ public class TestData {
 	}
 	
 	
-	public static List<ProjectItem> getFourProjectItems() {
-		List<ProjectItem> items = new ArrayList<ProjectItem>();
+	public static List<ProjectPageItem> getFourProjectItems() {
+		List<ProjectPageItem> items = new ArrayList<ProjectPageItem>();
 		for (int i = 1; i <= 4; i++) {
-			items.add(new ProjectItem("block" + i + ".jpg", "Block " + i));
+			items.add(new ProjectPageItem("block" + i + ".jpg", "Block " + i));
 		}
 		return items;
 	}
 	
-	public static List<ProjectItem> randomProjectItems() {
-		List<ProjectItem> items = new ArrayList<ProjectItem>();
+	public static List<ProjectPageItem> randomProjectItems() {
+		List<ProjectPageItem> items = new ArrayList<ProjectPageItem>();
 		int count = generator.nextInt(8);
 		for (int i = 0; i < count; i++) {
 			items.add(getRandomItem());
@@ -412,11 +412,11 @@ public class TestData {
 		return items;
 	}
 	
-	public static ProjectItem getRandomItem() {
-		ProjectItem[] items = new ProjectItem[8];
+	public static ProjectPageItem getRandomItem() {
+		ProjectPageItem[] items = new ProjectPageItem[8];
 		for (int i = 0; i < items.length; i++) {
 			int itemId = i + 1;
-			items[i] = new ProjectItem("block" + itemId + ".jpg", "Block " + itemId);
+			items[i] = new ProjectPageItem("block" + itemId + ".jpg", "Block " + itemId);
 		}
 		return getRand(items);
 	}
