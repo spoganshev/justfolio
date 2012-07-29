@@ -9,6 +9,7 @@
 
       <threadsafe>true</threadsafe>
   -->
+  <threadsafe>false</threadsafe>
 
   <!-- Configure java.util.logging -->
   <system-properties>
