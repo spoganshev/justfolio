@@ -4,9 +4,11 @@ package com.example.folio.client;
 import java.util.logging.Logger;
 
 import com.example.folio.client.cover.CoverPage;
+import com.example.folio.client.gin.FolioGinjector;
 import com.example.folio.client.project.ProjectPage;
 import com.example.folio.client.util.Dimension;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -22,6 +24,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Folio implements EntryPoint {
 
 	private static Logger LOGGER = Logger.getLogger(Folio.class.getName());
+	
+	private final FolioGinjector injector = GWT.create(FolioGinjector.class);
 	
 	private VerticalPanel root;
 	private Page page;
