@@ -1,7 +1,5 @@
 package com.example.folio.client.project;
 
-import java.util.logging.Logger;
-
 import com.example.folio.client.Page;
 import com.example.folio.client.TestData;
 import com.example.folio.client.project.BlankAnimation.Direction;
@@ -12,17 +10,14 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.Widget;
 
 public class ProjectPage extends Page {
 
-	private static Logger LOGGER = Logger.getLogger(ProjectPage.class.getName());
-	
 	private LayoutPanel container;
 	
 	private ProjectPageItem projectItem;
@@ -31,6 +26,16 @@ public class ProjectPage extends Page {
 	private int verIndex;
 	
 	AbsolutePanel prevPanel;
+	
+	/**
+	 * Without a pause Window.getClientWidth(), Window.getClientHeight() return incorrect values.
+	 */
+	private Timer redrawTimer = new Timer() {
+		@Override
+		public void run() {
+			ProjectPage.super.redraw();
+		}
+	};
 	
 	public ProjectPage() {
 		container = new LayoutPanel();
@@ -42,7 +47,7 @@ public class ProjectPage extends Page {
 	}
 
 	@Override
-	public Panel getPagePanel() {
+	public Widget asWidget() {
 		return container;
 	}
 	
@@ -64,18 +69,8 @@ public class ProjectPage extends Page {
 	@Override
 	public void redraw() {
 		Window.enableScrolling(false);
-		container.addDomHandler(new KeyPressHandler() {			
-			@Override
-			public void onKeyPress(KeyPressEvent event) {
-				LOGGER.fine("KeyPress" + event.getCharCode());				
-			}
-		}, KeyPressEvent.getType());
-		redraw(new Dimension(Window.getClientWidth(), Window.getClientHeight()));
-	}
-	
-	@Override
-	public String getHistoryToken() {
-		return "project";
+		redrawTimer.cancel();
+		redrawTimer.schedule(200);
 	}
 	
 	private void swipe(final Position from) {

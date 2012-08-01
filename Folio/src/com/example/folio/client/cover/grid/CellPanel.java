@@ -1,6 +1,7 @@
 package com.example.folio.client.cover.grid;
 
-import com.example.folio.client.project.ProjectPage;
+import com.example.folio.client.Folio;
+import com.example.folio.client.place.ProjectPlace;
 import com.example.folio.client.util.Position;
 import com.example.folio.client.util.Rectangle;
 import com.example.folio.client.util.Utils;
@@ -15,7 +16,6 @@ import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -67,7 +67,7 @@ public class CellPanel extends AbsolutePanel
 			@Override public void onClick(ClickEvent arg0) {
 //				String url = CellPanel.this.block.getImageUrl();
 				CellPanel.this.remove(infoPanel);
-				CellPanel.this.block.getRoot().openPage(new ProjectPage());
+				Folio.instance.injector.getPlaceController().goTo(new ProjectPlace());
 			}
 		});
 	}

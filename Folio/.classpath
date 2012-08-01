@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guice-snapshot.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/aopalliance.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guice-assistedinject-snapshot.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gin-mvp-1.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

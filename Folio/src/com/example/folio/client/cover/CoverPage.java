@@ -19,7 +19,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.Widget;
 
 public class CoverPage extends Page {
 	
@@ -63,7 +63,7 @@ public class CoverPage extends Page {
 	}
 
 	@Override
-	public Panel getPagePanel() {
+	public Widget asWidget() {
 		return coverPage;
 	}	
 
@@ -95,12 +95,7 @@ public class CoverPage extends Page {
 	@Override
 	public void redraw() {
 		Window.enableScrolling(true);
-		this.redraw(new Dimension(Window.getClientWidth(), Window.getClientHeight()));		
-	}
-
-	@Override
-	public String getHistoryToken() {
-		return null;
+		super.redraw();
 	}
 	
 	private void redrawGrid(CoverGrid grid) {

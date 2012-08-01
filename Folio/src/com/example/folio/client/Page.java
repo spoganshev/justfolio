@@ -1,18 +1,20 @@
 package com.example.folio.client;
 
 import com.example.folio.client.util.Dimension;
-import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.IsWidget;
 
-public abstract class Page {
+/**
+ * This is our 'View' in the MVP model.
+ */
+public abstract class Page implements IsWidget {
 
-	public abstract Panel getPagePanel();
-	
 	public abstract int calcHeight(Dimension windowSize);
-	
-	public abstract void redraw();
 	
 	public abstract void redraw(Dimension windowSize);
 	
-	public abstract String getHistoryToken();
+	public void redraw() {
+		redraw(new Dimension(Window.getClientWidth(), Window.getClientHeight()));
+	}
 	
 }

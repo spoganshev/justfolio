@@ -1,9 +1,11 @@
 package com.example.folio.client.gin;
 
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.SimpleEventBus;
+import com.example.folio.client.MainViewImpl;
+import com.example.folio.client.activity.FolioActivityMapper;
+import com.example.folio.client.place.CoverPlace;
+import com.example.folio.client.project.ProjectPage;
+import com.google.code.ginmvp.client.GinMvpModule;
 import com.google.gwt.inject.client.AbstractGinModule;
-import com.google.inject.Singleton;
 
 /**
  * Dependency injection configuration. Binds keys to implementation. It is possible to configure
@@ -14,7 +16,10 @@ public class FolioGinModule extends AbstractGinModule {
 
 	@Override
 	protected void configure() {
-		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
+		// GinMvpModule provides EventBus, PlaceController, PlaceHistoryHandler
+		install(new GinMvpModule(FolioActivityMapper.class, CoverPlace.class, MainViewImpl.class));
+		
+		bind(ProjectPage.class);
 	}
 
 }
