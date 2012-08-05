@@ -8,6 +8,16 @@ import java.util.Set;
 public class Project {
 
 	/**
+	 * Project title is always shown over every item of the project
+	 */
+	private String title;
+	
+	/**
+	 * Project description can be expanded on every item, hidden by default
+	 */
+	private String description;
+	
+	/**
 	 * Project items (images, videos).
 	 */
 	private Set<Item> items;
@@ -16,6 +26,22 @@ public class Project {
 	 * Tags that describe the project.
 	 */
 	private Set<Tag> tags;
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 	public Set<Item> getItems() {
 		return items;

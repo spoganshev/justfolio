@@ -1,7 +1,7 @@
 package com.example.folio.shared.model;
 
 /**
- * Foreground or backround image.
+ * Foreground or background image.
  */
 public class Image {
 
