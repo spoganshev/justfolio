@@ -23,6 +23,8 @@ import com.google.gwt.user.client.ui.Label;
 public class CellPanel extends AbsolutePanel 
 	implements HasMouseOverHandlers, HasMouseOutHandlers, HasClickHandlers {
 
+	public static final int MOUSE_OVER_COMMENT_AREA_HEIGHT = 50;
+	
 	private CoverBlock block;
 	private AbsolutePanel infoPanel;
 	private Image image;
@@ -53,7 +55,7 @@ public class CellPanel extends AbsolutePanel
 				CellPanel.this.setWidgetPosition(
 					infoPanel, 
 					0, 
-					CellPanel.this.block.calcRectangle().height - CellPanel.this.block.calcRectangle().height / 3
+					CellPanel.this.block.calcRectangle().height - MOUSE_OVER_COMMENT_AREA_HEIGHT
 				);
 			}
 		});
