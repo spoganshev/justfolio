@@ -6,23 +6,17 @@ package com.example.folio.shared.model;
 public class Image {
 
 	/**
-	 * A name based on which the URL to an image will be generated.
-	 */
-	private String name;
-	
-	/**
 	 * URL to an image.
 	 */
 	private String url;
 	
-	public String getName() {
-		return name;
+	public Image() {
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public Image(String url) {
+		this.url = url;
 	}
-	
+
 	public String getUrl() {
 		return url;
 	}

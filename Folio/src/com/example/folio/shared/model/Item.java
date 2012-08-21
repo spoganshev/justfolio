@@ -6,14 +6,24 @@ package com.example.folio.shared.model;
 public class Item {
 
 	/**
+	 * URL-friendly item name, generated from the title.
+	 */
+	private String name;
+	
+	/**
 	 * Item title.
 	 */
 	private String title;
 	
 	/**
-	 * Type of background for an item on a Project page.
+	 * Actual image.
 	 */
-	private BackgroundType backgroundType;
+	private Image image;
+	
+	/**
+	 * Type of background for an item on a Project page. NO_BACKGROUND by default.
+	 */
+	private BackgroundType backgroundType = BackgroundType.NO_BACKGROUND;
 	
 	/**
 	 * Used when backgroundType == IMAGE.
@@ -24,6 +34,14 @@ public class Item {
 	 * Used when backgroundType == COLOR.
 	 */
 	private String backgroundColor;
+	
+	public Item() {
+	}
+
+	public Item(String title, String imageUrl) {
+		setTitle(title);
+		this.image = new Image(imageUrl);
+	}
 
 	public String getTitle() {
 		return title;
@@ -31,6 +49,7 @@ public class Item {
 
 	public void setTitle(String title) {
 		this.title = title;
+		setName(title.replaceAll(" ", "").toLowerCase());
 	}
 
 	public BackgroundType getBackgroundType() {
@@ -55,6 +74,22 @@ public class Item {
 
 	public void setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Image getImage() {
+		return image;
+	}
+	
+	public void setImage(Image image) {
+		this.image = image;
 	}
 	
 }

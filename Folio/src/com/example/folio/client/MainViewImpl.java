@@ -74,6 +74,9 @@ public class MainViewImpl implements MainView {
 	public void setWidget(IsWidget widget) {
 		root.clear();
 		page = (Page) widget;
+		if (page == null) {
+			return;
+		}
 
 		mainMenu.setPage(page);	
 		

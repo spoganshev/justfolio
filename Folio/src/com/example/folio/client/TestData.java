@@ -11,7 +11,8 @@ import com.example.folio.client.cover.grid.CoverBlock.ImageInfo;
 import com.example.folio.client.cover.grid.CoverGrid;
 import com.example.folio.client.cover.grid.Transformator;
 import com.example.folio.client.project.ProjectPageItem;
-import com.example.folio.client.project.ProjectPage;
+import com.example.folio.shared.model.Item;
+import com.example.folio.shared.model.Project;
 
 public class TestData {
 
@@ -426,6 +427,43 @@ public class TestData {
 	private static <T> T getRand(T[] arr) {
 	    int rnd = generator.nextInt(arr.length);
 	    return arr[rnd];
+	}
+	
+	private static final int[] ITEM_COUNT = { 2, 3, 5, 1, 8 };
+	
+	private static List<Project> SAMPLE_PROJECTS = initSampleProjects();
+	
+	private static List<Project> initSampleProjects() {
+		List<Project> projects = new ArrayList<Project>();
+		for (int i = 1; i <= 5; ++i) {
+			Project p = new Project("Project " + i);
+			List<Item> items = new ArrayList<Item>();
+			int itemCount = ITEM_COUNT[i - 1];
+			for (int j = 1; j <= itemCount; ++j) {
+				int blockNumber = (j + i) % 8 + 1;
+				items.add(new Item("Item " + j, "block" + blockNumber + ".jpg"));
+			}
+			p.setItems(items);
+			projects.add(p);
+		}
+		return projects;
+	}
+	
+	public static List<Project> getSampleProjects() {
+		return SAMPLE_PROJECTS;
+	}
+	
+	public static Project getRandomProject() {
+		return SAMPLE_PROJECTS.get(generator.nextInt(SAMPLE_PROJECTS.size()));
+	}
+
+	public static Project getProjectByName(String projectName) {
+		for (Project p : SAMPLE_PROJECTS) {
+			if (projectName.equals(p.getName())) {
+				return p;
+			}
+		}
+		return null;
 	}
 	
 }

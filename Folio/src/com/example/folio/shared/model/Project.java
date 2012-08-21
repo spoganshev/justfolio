@@ -1,5 +1,6 @@
 package com.example.folio.shared.model;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -7,6 +8,11 @@ import java.util.Set;
  */
 public class Project {
 
+	/**
+	 * URL-friendly unique project name, generated from the title.
+	 */
+	private String name;
+	
 	/**
 	 * Project title is always shown over every item of the project
 	 */
@@ -20,19 +26,27 @@ public class Project {
 	/**
 	 * Project items (images, videos).
 	 */
-	private Set<Item> items;
+	private List<Item> items;
 	
 	/**
 	 * Tags that describe the project.
 	 */
 	private Set<Tag> tags;
 	
+	public Project() {
+	}
+
+	public Project(String title) {
+		setTitle(title);
+	}
+
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
+		setName(title.replaceAll(" ", "").toLowerCase());
 	}
 
 	public String getDescription() {
@@ -43,11 +57,11 @@ public class Project {
 		this.description = description;
 	}
 	
-	public Set<Item> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 	
-	public void setItems(Set<Item> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 	
@@ -57,6 +71,24 @@ public class Project {
 	
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getItemIndex(String itemName) {
+		for (int i = 0; i < items.size(); i++) {
+			Item item = items.get(i);
+			if (item.getName().equals(itemName)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 }

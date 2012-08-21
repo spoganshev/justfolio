@@ -2,28 +2,41 @@ package com.example.folio.client.project;
 
 import com.example.folio.client.Page;
 import com.example.folio.client.TestData;
+import com.example.folio.client.place.ProjectPlace;
 import com.example.folio.client.project.BlankAnimation.Direction;
 import com.example.folio.client.util.Dimension;
 import com.example.folio.client.util.Position;
+import com.example.folio.shared.model.Item;
+import com.example.folio.shared.model.Project;
 import com.google.gwt.animation.client.Animation;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
 
 public class ProjectPage extends Page {
 
+	@Inject
+	private PlaceController placeController;
+	
 	private LayoutPanel container;
 	
 	private ProjectPageItem projectItem;
 	
 	private int horIndex;
-	private int verIndex;
+	private int verIndex = 0;
+	
+	private int totalHor;
+	private int totalVer;
+	
+	private Project project;
 	
 	AbsolutePanel prevPanel;
 	
@@ -38,16 +51,18 @@ public class ProjectPage extends Page {
 	};
 	
 	public ProjectPage() {
-		container = new LayoutPanel();
-		container.setStyleName("project_page");
-		projectItem = TestData.getRandomItem();
-		AbsolutePanel itemPanel = projectItem.getPanel();
-		container.add(itemPanel);
-		projectItem.setPage(this);
 	}
 
 	@Override
 	public Widget asWidget() {
+		container = new LayoutPanel();
+		container.setStyleName("project_page");
+		projectItem = TestData.getRandomItem();
+		Item item = project.getItems().get(horIndex);
+		projectItem = new ProjectPageItem(item.getImage().getUrl(), item.getTitle());
+		AbsolutePanel itemPanel = projectItem.getPanel();
+		container.add(itemPanel);
+		projectItem.setPage(this);
 		return container;
 	}
 	
@@ -77,7 +92,12 @@ public class ProjectPage extends Page {
 		final int width = Window.getClientWidth();
 		final int height = Window.getClientHeight();
 		
-		final ProjectPageItem nextItem = TestData.getRandomItem();
+		project = TestData.getSampleProjects().get(verIndex);
+		totalHor = project.getItems().size();
+		Item item = project.getItems().get(horIndex);
+		placeController.goTo(new ProjectPlace(project.getName(), item.getName()));
+		final ProjectPageItem nextItem = new ProjectPageItem(item.getImage().getUrl(),
+				item.getTitle());
 		final AbsolutePanel nextPanel = nextItem.getPanel();
 		nextItem.scale(new Dimension(width, height));
 		container.add(nextPanel);
@@ -144,9 +164,10 @@ public class ProjectPage extends Page {
 	
 	public void swipeForward() {
 		final int height = Window.getClientHeight();
-		if (verIndex < 5) {	
-			swipe(new Position(0, height));	
+		if (verIndex < totalVer) {	
 			verIndex++;
+			horIndex = 0;
+			swipe(new Position(0, height));	
 		} else {
 			blankSwipe(new Position(0, height), Direction.DOWN);
 		}
@@ -155,8 +176,9 @@ public class ProjectPage extends Page {
 	public void swipeBack() {
 		final int height = Window.getClientHeight();
 		if (verIndex > 0) { 
-			swipe(new Position(0, -height));
 			verIndex--;
+			horIndex = 0;
+			swipe(new Position(0, -height));
 		} else {
 			blankSwipe(new Position(0, -height), Direction.UP);
 		}
@@ -166,8 +188,8 @@ public class ProjectPage extends Page {
 	public void swipeLeft() {
 		final int width = Window.getClientWidth();
 		if (horIndex > 0) {
-			swipe(new Position(-width, 0));
 			horIndex--;
+			swipe(new Position(-width, 0));
 		} else {
 			blankSwipe(new Position(-width, 0), Direction.LEFT);
 		}
@@ -175,12 +197,24 @@ public class ProjectPage extends Page {
 	
 	public void swipeRight() {
 		final int width = Window.getClientWidth();
-		if (horIndex < 5) {
-			swipe(new Position(width, 0));
+		if (horIndex < totalHor) {
 			horIndex++;
+			swipe(new Position(width, 0));
 		} else {
 			blankSwipe(new Position(width, 0), Direction.RIGHT);
 		}
 	}
+
+	public void setProjectAndItem(String projectName, String itemName) {
+		project = TestData.getProjectByName(projectName);
+		
+		totalHor = project.getItems().size();
+		horIndex = project.getItemIndex(itemName);
+		if (horIndex == -1) {
+			horIndex = 0;
+		}
+		
+		verIndex = TestData.getSampleProjects().indexOf(project);
+		totalVer = TestData.getSampleProjects().size();
+	}
 }
-	

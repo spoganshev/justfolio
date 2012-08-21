@@ -2,6 +2,7 @@ package com.example.folio.client.gin;
 
 import com.example.folio.client.MainViewImpl;
 import com.example.folio.client.activity.FolioActivityMapper;
+import com.example.folio.client.activity.ProjectActivity;
 import com.example.folio.client.place.CoverPlace;
 import com.example.folio.client.project.ProjectPage;
 import com.google.code.ginmvp.client.GinMvpModule;
@@ -20,6 +21,7 @@ public class FolioGinModule extends AbstractGinModule {
 		install(new GinMvpModule(FolioActivityMapper.class, CoverPlace.class, MainViewImpl.class));
 		
 		bind(ProjectPage.class);
+		bind(ProjectActivity.class);
 	}
 
 }
